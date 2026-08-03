@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aagami — Login Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#2563EB;
+    --primary-dark:#1D4ED8;
+    --secondary:#F59E0B;
+    --bg:#FFFFFF;
+    --text:#1F2937;
+    --text-muted:#6B7280;
+    --border:#E5E7EB;
+    --field-bg:#F9FAFB;
+    --radius-field:14px;
+    --radius-btn:16px;
+    --shadow-soft: 0 8px 24px rgba(37,99,235,0.10);
+    --shadow-btn: 0 10px 20px rgba(37,99,235,0.28);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:radial-gradient(circle at 20% 10%, #EFF6FF 0%, #F3F4F6 45%, #E5E7EB 100%);
+    font-family:'Inter',sans-serif;
+    padding:40px 16px;
+  }
+  .phone{
+    width:390px;
+    max-width:100%;
+    height:844px;
+    background:var(--bg);
+    border-radius:44px;
+    box-shadow: 0 30px 60px rgba(15,23,42,0.25), 0 0 0 10px #111827;
+    overflow:hidden;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+  .notch{
+    position:absolute;
+    top:0; left:50%; transform:translateX(-50%);
+    width:120px; height:28px;
+    background:#111827;
+    border-radius:0 0 18px 18px;
+    z-index:5;
+  }
+  .screen{
+    flex:1;
+    overflow-y:auto;
+    padding: 56px 26px 28px;
+    background:
+      radial-gradient(600px 260px at 50% -80px, #DBEAFE 0%, rgba(219,234,254,0) 60%),
+      #FFFFFF;
+    animation: fadeUp 600ms ease both;
+  }
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .logo-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-top:6px;
+    margin-bottom:22px;
+  }
+  .logo-badge{
+    width:72px;height:72px;
+    border-radius:22px;
+    background:linear-gradient(135deg, var(--primary) 0%, #3B82F6 55%, #60A5FA 100%);
+    box-shadow: var(--shadow-btn);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:14px;
+  }
+  .logo-badge svg{ width:38px; height:38px; }
+  .brand-name{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:24px;
+    color:var(--text);
+    letter-spacing:0.2px;
+  }
+  .brand-tagline{
+    font-size:13px;
+    color:var(--text-muted);
+    margin-top:2px;
+    font-weight:500;
+  }
+  .heading{
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:24px;
+    color:var(--text);
+    margin: 18px 0 4px;
+  }
+  .subtext{
+    font-size:14.5px;
+    color:var(--text-muted);
+    margin-bottom:24px;
+    line-height:1.5;
+  }
+  .field{
+    margin-bottom:16px;
+  }
+  .field label{
+    display:block;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--text);
+    margin-bottom:6px;
+  }
+  .input-wrap{
+    display:flex;
+    align-items:center;
+    background:var(--field-bg);
+    border:1.5px solid var(--border);
+    border-radius:var(--radius-field);
+    padding:0 14px;
+    height:52px;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .input-wrap.focused{
+    border-color:var(--primary);
+    box-shadow:0 0 0 4px rgba(37,99,235,0.12);
+    background:#fff;
+  }
+  .input-wrap svg{ flex-shrink:0; opacity:0.55; }
+  .input-wrap input{
+    border:none;
+    outline:none;
+    background:transparent;
+    flex:1;
+    padding:0 10px;
+    font-size:15px;
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+  }
+  .input-wrap input::placeholder{ color:#9CA3AF; }
+  .eye-btn{
+    background:none;border:none;cursor:pointer;opacity:0.55;padding:4px;
+  }
+  .row-between{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin: 4px 0 22px;
+  }
+  .remember{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13.5px;
+    color:var(--text);
+  }
+  .checkbox{
+    width:19px;height:19px;
+    border-radius:6px;
+    border:1.5px solid #9CA3AF;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--primary);
+    border-color:var(--primary);
+  }
+  .checkbox svg{width:13px;height:13px;}
+  .forgot{
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--primary);
+    text-decoration:none;
+    background:none;border:none;cursor:pointer;
+  }
+  .btn-primary{
+    width:100%;
+    height:54px;
+    border:none;
+    border-radius:var(--radius-btn);
+    background:linear-gradient(135deg, var(--primary) 0%, #3B82F6 100%);
+    color:#fff;
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:16px;
+    letter-spacing:0.2px;
+    box-shadow: var(--shadow-btn);
+    cursor:pointer;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .btn-primary:active{
+    transform: scale(0.97);
+    box-shadow: 0 6px 14px rgba(37,99,235,0.25);
+  }
+  .divider{
+    display:flex;align-items:center;gap:12px;
+    margin:24px 0;
+  }
+  .divider .line{ flex:1; height:1px; background:var(--border); }
+  .divider span{
+    font-size:12.5px; color:var(--text-muted); font-weight:600;
+  }
+  .btn-google{
+    width:100%;
+    height:52px;
+    border-radius:var(--radius-btn);
+    border:1.5px solid var(--border);
+    background:#fff;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--text);
+    cursor:pointer;
+    transition: transform .12s ease, background .15s ease;
+  }
+  .btn-google:active{ transform:scale(0.97); background:#F9FAFB; }
+  .signup-row{
+    text-align:center;
+    margin-top:26px;
+    font-size:14px;
+    color:var(--text-muted);
+  }
+  .signup-row a{
+    color:var(--secondary);
+    font-weight:700;
+    text-decoration:none;
+  }
+  .footer{
+    margin-top:auto;
+    padding-top:28px;
+    text-align:center;
+  }
+  .footer-links{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    font-size:11.5px;
+    color:var(--text-muted);
+    margin-bottom:8px;
+  }
+  .footer-links span{ color:#D1D5DB; }
+  .footer-links a{ color:var(--text-muted); text-decoration:none; }
+  .footer-version{
+    font-size:11px;
+    color:#9CA3AF;
+  }
+  .spacer{ flex:1; min-height:8px; }
+</style>
+</head>
+<body>
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen">
+      <div class="logo-wrap">
+        <div class="logo-badge">
+          <!-- Graduation cap fused with upward arrow -->
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 6L4 15L24 24L44 15L24 6Z" fill="white"/>
+            <path d="M13 19.5V29C13 29 17 33.5 24 33.5C31 33.5 35 29 35 29V19.5" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M24 33.5V41M24 41L19.5 36.5M24 41L28.5 36.5" stroke="#FDE68A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="brand-name">Aagami</div>
+        <div class="brand-tagline">Your Career Starts Here.</div>
+      </div>
+
+      <div class="heading">Welcome Back!</div>
+      <div class="subtext">Sign in to continue your career journey.</div>
+
+      <div class="field">
+        <label>Email or Mobile Number</label>
+        <div class="input-wrap focused">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M4 4h16v16H4z" stroke="none"/><path d="M22 6l-10 7L2 6" stroke="#2563EB"/><path d="M2 6h20v12H2z" stroke="#2563EB"/></svg>
+          <input type="text" placeholder="you@example.com" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <div class="input-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <input type="password" placeholder="••••••••" value="••••••••" />
+          <button class="eye-btn" aria-label="toggle password">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="row-between">
+        <div class="remember">
+          <div class="checkbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          Remember Me
+        </div>
+        <button class="forgot">Forgot Password?</button>
+      </div>
+
+      <button class="btn-primary">Login</button>
+
+      <div class="divider">
+        <div class="line"></div><span>OR</span><div class="line"></div>
+      </div>
+
+      <button class="btn-google">
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.5 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.5 29.6 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.5 0 10.4-1.9 14.3-5.1l-6.6-5.4C29.6 35.4 26.9 36 24 36c-5.3 0-9.7-3.1-11.3-7.5l-6.6 5.1C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.4-2.4 4.4-4.4 5.9l6.6 5.4C41.4 36 44 30.5 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>
+        Continue with Google
+      </button>
+
+      <div class="signup-row">Don't have an account? <a href="#">Sign Up</a></div>
+
+      <div class="spacer"></div>
+      <div class="footer">
+        <div class="footer-links">
+          <a href="#">Terms &amp; Conditions</a><span>|</span><a href="#">Privacy Policy</a>
+        </div>
+        <div class="footer-version">Version 1.0</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
